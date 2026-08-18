@@ -3,7 +3,7 @@ Barebones 68008 is a very simple 68008 SBC similar to barebones Z80 and barebone
 
 ![bb68008proto](BB68008_prototype_topview.jpg)
 
-###Features
+### Features
 - 8MHz MC68008
 - 128K/512K RAM
 - 57600 N82 bit-bang serial port
@@ -16,6 +16,7 @@ Refer to here for a short explaination for embedding ROM in 22V10
 
 At power up, 22V10-based ROM provides the program for 68008 until location $40 is access which will switch out the ROM and replaced with RAM. While ROM is enabled, the RAM is enabled and writable so the role of ROM bootstrap is to decode incoming serial data and write to itself starting from location $0. When location $40 is written, the ROM is replaced with RAM but the bootstrap program remained the same. When 512 bytes of serial data are received, the program starts at location $40.
 
+```
 SerRx    equ $fffffff4
 page     equ $fffffffe
          org $0
@@ -47,15 +48,16 @@ getSer:
 bootend:
 ;this is location $40
 ;loaded program resume execution here.
-Design Files
-Schematic
+```
 
-ATF22V10 design file
+### Design Files
+- Schematic
+- ATF22V10 design file
 
-Software
-Serial bootstrap algorithm embedded in ATF22V10 ROM
+### Software
+- Serial bootstrap algorithm embedded in ATF22V10 ROM
 
-S-record loader. Send BB68K8Load.bin as binary file first, then send S record file to be loaded and execute at $400
+- S-record loader. Send BB68K8Load.bin as binary file first, then send S record file to be loaded and execute at $400
 
-Hello world demonstration software
+- Hello world demonstration software
 
