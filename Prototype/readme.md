@@ -13,7 +13,11 @@ Barebones 68008 is a very simple 68008 SBC similar to barebones Z80 and barebone
 - 64-byte ROM in ATF22V10
 
 ### Theory of Operation
-Refer to here for a short explaination for embedding ROM in 22V10
+22V10 has 10 outputs; eight of them have large sum-of-product array with 10 to 16 product terms per output. The number of product terms are not the same with pins 17, 18 having 16 product terms while pin 15,22 having 10 product terms. By selectively assigning the most used data bits to output with largest product terms and least used data bits to outputs with smaller product terms, a decent size ROM can be created out of 22V10's logic array. The size of ROM is data dependent and data bit pin assignment. By trials and errors, 40-50 bytes of Z80 or 6502 program can be embedded in 22V10's logic array.
+
+The 10 outputs of a 22V10 can be partition into 8 outputs for 40-50 bytes of ROM, and 2 outputs for RAM page register and register for serial transmitter. The RAM page register is cleared after reset so ROM occupies the entire memory space for read operations. However, RAM is still enabled and can accept data for write operations Another word, ROM is ready-only and RAM is write-only when RAM page register is cleared.
+
+The serial port as implemented in 22V10 is a simple bit-bang serial transmitter and receiver. The serial receiver is a 2K resistor between serial receive terminal and Z80 or 6502's data bit 7; while the serial transmitter is a writable register either in Z80's I/O space or 6502's memory mapped register.
 
 At power up, 22V10-based ROM provides the program for 68008 until location $40 is access which will switch out the ROM and replaced with RAM. While ROM is enabled, the RAM is enabled and writable so the role of ROM bootstrap is to decode incoming serial data and write to itself starting from location $0. When location $40 is written, the ROM is replaced with RAM but the bootstrap program remained the same. When 512 bytes of serial data are received, the program starts at location $40.
 
