@@ -3,6 +3,7 @@ Barebones 68008 is a very simple 68008 SBC similar to barebones Z80 and barebone
 
 ![bb68008proto](BB68008_prototype_topview.jpg)
 
+![bb68008protoB](BB68008_prototype_bottomview.jpg)
 ### Features
 - 8MHz MC68008
 - 128K/512K RAM
