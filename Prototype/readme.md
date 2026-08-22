@@ -56,13 +56,11 @@ bootend:
 ```
 
 ### Design Files
-- Schematic
-- ATF22V10 design file
+- [Schematic](bb68008_prototype_scm.pdf)
+- [ATF22V10 design file](bb68008_prototype_22v10_design_file_serboot.zip)
 
 ### Software
-- Serial bootstrap algorithm embedded in ATF22V10 ROM
-
-- S-record loader. Send BB68K8Load.bin as binary file first, then send S record file to be loaded and execute at $400
-
-- Hello world demonstration software
+- [Serial bootstrap algorithm](bb68008_prototype_serial_bootstrap_in_22v10.zip) embedded in ATF22V10 ROM
+- [S-record loader](bb68008_prototype_software_srecord_loader.zip). Send BB68K8Load.bin as binary file first, then send S record file to be loaded and execute at $400
+- [Hello world](bb68008_prototype_software_helloworld_demo.zip) demonstration software
 
